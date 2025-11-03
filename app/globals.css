@@ -216,32 +216,39 @@ footer {
     display: none;
   }
 
-  .carousel__dots {
-    position: static;
-    margin-top: 1.5rem;
-    justify-content: center;
-  }
-
-  .carousel__mobileNav {
+  .carousel__mobileRow {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.6rem;
     margin-top: 0.75rem;
   }
 
-  .carousel__mobileNav button {
-    background: rgba(255, 45, 85, 0.2);
-    border: 1px solid rgba(255, 45, 85, 0.6);
-    padding: 0.65rem 1.25rem;
-    border-radius: 999px;
-    font-weight: 600;
+  .carousel__arrowIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(5, 5, 12, 0.6);
     color: var(--text);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    transition: background 0.2s ease, transform 0.2s ease;
   }
 
-  .carousel__mobileNav button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 40px -24px rgba(255, 45, 85, 0.6);
+  .carousel__arrowIcon:hover {
+    background: rgba(255, 45, 85, 0.4);
+    transform: scale(1.05);
   }
+
+  .carousel__dots {
+    position: static;
+    margin: 0;
+    justify-content: center;
+  }
+
+  /* Hilangkan gaya lama mobileNav bila masih ada */
+  .carousel__mobileNav { display: none; }
 }
