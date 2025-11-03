@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
 function toEmbedUrl(url) {
@@ -17,6 +17,8 @@ function toEmbedUrl(url) {
 export default function SeasonCarousel({ seasons }) {
   const [active, setActive] = useState(0);
   const [showTrailer, setShowTrailer] = useState(false);
+  const touchStartRef = useRef({ x: 0, y: 0 });
+  const touchEndRef = useRef({ x: 0, y: 0 });
 
   const currentSeason = seasons[active];
 
@@ -35,8 +37,29 @@ export default function SeasonCarousel({ seasons }) {
     });
   };
 
+  const onTouchStart = (e) => {
+    const t = e.touches[0];
+    touchStartRef.current = { x: t.clientX, y: t.clientY };
+    touchEndRef.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchMove = (e) => {
+    const t = e.touches[0];
+    touchEndRef.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchEnd = () => {
+    const dx = touchEndRef.current.x - touchStartRef.current.x;
+    const dy = touchEndRef.current.y - touchStartRef.current.y;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    if (absDx > 50 && absDy < 60) {
+      handleNav(dx < 0 ? "next" : "prev");
+    }
+  };
+
   return (
-    <div className="carousel">
+    <div className="carousel" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       <button
         type="button"
         className="carousel__control carousel__control--prev"
@@ -48,7 +71,13 @@ export default function SeasonCarousel({ seasons }) {
 
       <article className="carousel__slide" key={currentSeason.title}>
         <div className="carousel__image">
-          <Image src={currentSeason.image} alt={`Poster ${currentSeason.title}`} width={420} height={620} />
+          <Image
+            src={currentSeason.image}
+            alt={`Poster ${currentSeason.title}`}
+            width={420}
+            height={620}
+            sizes="(max-width: 900px) 320px, 420px"
+          />
         </div>
         <div className="carousel__content">
           <span>{currentSeason.era}</span>

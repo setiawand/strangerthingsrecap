@@ -42,6 +42,7 @@ Ada dua cara umum untuk publish aplikasi ini ke Vercel:
   - Build Settings: `Install Command: npm install`, `Build Command: npm run build` (default), Output diatur otomatis oleh Vercel.
   - Tidak ada environment variable khusus yang diperlukan.
   - Klik Deploy. Vercel akan membuat domain preview dan production; setiap push ke `main` akan memicu deploy otomatis.
+  - Production URL: https://strangerthingsrecap.vercel.app
 
 - Via CLI
   - Install CLI: `npm i -g vercel`
