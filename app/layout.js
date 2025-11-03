@@ -17,10 +17,10 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/posters/season5.jpg",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Poster Stranger Things Season 5"
+        alt: "Stranger Things Recap"
       }
     ]
   },
@@ -29,7 +29,7 @@ export const metadata = {
     title: "Stranger Things - Sinopsis Tiap Season",
     description:
       "Rekap singkat tiap season Stranger Things untuk menyambut Season 5 di Netflix.",
-    images: ["/posters/season5.jpg"]
+    images: ["/opengraph-image"]
   },
   robots: {
     index: true,

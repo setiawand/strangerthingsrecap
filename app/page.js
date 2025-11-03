@@ -44,8 +44,25 @@ const seasons = [
 ];
 
 export default function HomePage() {
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListOrder: "Ascending",
+    itemListElement: seasons.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "TVSeason",
+        name: s.title,
+        description: s.synopsis,
+        image: `https://strangerthingsrecap.vercel.app${s.image}`,
+        url: s.trailer
+      }
+    }))
+  };
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />
       <header>
         <h1>Stranger Things Season Recap</h1>
         <p>Sambut Season 5 di Netflix dengan rekap cepat sinopsis tiap season sebelumnya.</p>
