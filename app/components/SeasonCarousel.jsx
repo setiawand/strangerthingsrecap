@@ -133,6 +133,15 @@ export default function SeasonCarousel({ seasons }) {
           />
         ))}
       </div>
+
+      <div className="carousel__mobileNav" aria-label="Navigasi carousel mobile">
+        <button type="button" onClick={() => handleNav("prev")} aria-label="Season sebelumnya">
+          &#10094; Sebelumnya
+        </button>
+        <button type="button" onClick={() => handleNav("next")} aria-label="Season berikutnya">
+          Berikutnya &#10095;
+        </button>
+      </div>
     </div>
   );
 }
