@@ -192,6 +192,9 @@ footer {
   transform: scale(1.1);
 }
 
+/* Sembunyikan row mobile secara default (ditampilkan di media query mobile) */
+.carousel__mobileRow { display: none; }
+
 @media (max-width: 900px) {
   .carousel__slide {
     grid-template-columns: 1fr;
@@ -248,6 +251,9 @@ footer {
     margin: 0;
     justify-content: center;
   }
+
+  /* Sembunyikan dots versi desktop saat mobile */
+  .carousel__dots--desktop { display: none; }
 
   /* Hilangkan gaya lama mobileNav bila masih ada */
   .carousel__mobileNav { display: none; }

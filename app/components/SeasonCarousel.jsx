@@ -79,6 +79,43 @@ export default function SeasonCarousel({ seasons }) {
             sizes="(max-width: 900px) 320px, 420px"
           />
         </div>
+
+        {/* Mobile nav row under poster (shown only on mobile via CSS) */}
+        <div className="carousel__mobileRow" aria-label="Navigasi carousel mobile">
+          <button
+            type="button"
+            className="carousel__arrowIcon"
+            onClick={() => handleNav("prev")}
+            aria-label="Season sebelumnya"
+          >
+            &#10094;
+          </button>
+
+          <div className="carousel__dots" role="tablist" aria-label="Pilih season">
+            {seasons.map((season, index) => (
+              <button
+                type="button"
+                key={season.title}
+                className={`carousel__dot${index === active ? " carousel__dot--active" : ""}`}
+                onClick={() => {
+                  setShowTrailer(false);
+                  setActive(index);
+                }}
+                aria-label={`Lihat ${season.title}`}
+                aria-pressed={index === active}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="carousel__arrowIcon"
+            onClick={() => handleNav("next")}
+            aria-label="Season berikutnya"
+          >
+            &#10095;
+          </button>
+        </div>
         <div className="carousel__content">
           <span>{currentSeason.era}</span>
           <h2>{currentSeason.title}</h2>
@@ -118,40 +155,21 @@ export default function SeasonCarousel({ seasons }) {
         &#10095;
       </button>
 
-      <div className="carousel__mobileRow" aria-label="Navigasi carousel mobile">
-        <button
-          type="button"
-          className="carousel__arrowIcon"
-          onClick={() => handleNav("prev")}
-          aria-label="Season sebelumnya"
-        >
-          &#10094;
-        </button>
-
-        <div className="carousel__dots" role="tablist" aria-label="Pilih season">
-          {seasons.map((season, index) => (
-            <button
-              type="button"
-              key={season.title}
-              className={`carousel__dot${index === active ? " carousel__dot--active" : ""}`}
-              onClick={() => {
-                setShowTrailer(false);
-                setActive(index);
-              }}
-              aria-label={`Lihat ${season.title}`}
-              aria-pressed={index === active}
-            />
-          ))}
-        </div>
-
-        <button
-          type="button"
-          className="carousel__arrowIcon"
-          onClick={() => handleNav("next")}
-          aria-label="Season berikutnya"
-        >
-          &#10095;
-        </button>
+      {/* Desktop dots at bottom (hidden on mobile via CSS modifier) */}
+      <div className="carousel__dots carousel__dots--desktop" role="tablist" aria-label="Pilih season">
+        {seasons.map((season, index) => (
+          <button
+            type="button"
+            key={season.title}
+            className={`carousel__dot${index === active ? " carousel__dot--active" : ""}`}
+            onClick={() => {
+              setShowTrailer(false);
+              setActive(index);
+            }}
+            aria-label={`Lihat ${season.title}`}
+            aria-pressed={index === active}
+          />
+        ))}
       </div>
     </div>
   );
