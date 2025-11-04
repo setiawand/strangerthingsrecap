@@ -1,4 +1,5 @@
 import "./globals.css";
+import Footer from "./components/Footer";
 
 export const metadata = {
   metadataBase: new URL("https://strangerthingsrecap.vercel.app"),
@@ -54,7 +55,10 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
